@@ -53,12 +53,21 @@ classdef Map
         end
         
         % AddFood method
-        function obj = AddFood(obj, id, name, nutrition, location)
+        function obj = AddFood(obj, name, nutrition, location)
             if obj.edificeGrid(location(1), location(2)) < 10
-                newFood = Food(id, name, nutrition, location);  % Create a new food object
+                newFood = Food(obj.GenObjectID(name), name, nutrition, location);  % Create a new food object
                 obj = obj.addObject(newFood);  % Add food to the map
             else
                 error('Cannot place food on an impassable cell');
+            end
+        end
+        
+        function obj = AddAgent(obj, name, location)
+            if obj.edificeGrid(location(1), location(2)) < 10
+                newAgent = Agent(obj.GenObjectID(name), name, nutrition, location);  % Create a new food object
+                obj = obj.addObject(newAgent);  % Add food to the map
+            else
+                error('Cannot place Agent on an impassable cell');
             end
         end
         
@@ -74,7 +83,7 @@ classdef Map
                     foodID = ['food_', num2str(foodCounter + 1)];
                     foodName = ['Food_', num2str(foodCounter + 1)];
                     nutritionValue = randi([5, 15]);  % Random nutrition value between 5 and 15
-                    obj = obj.AddFood(foodID, foodName, nutritionValue, [x, y]);
+                    obj = obj.AddFood(foodName, nutritionValue, [x, y]);
                     foodCounter = foodCounter + 1;
                 end
             end
@@ -169,6 +178,13 @@ classdef Map
                 error('Object with ID %s not found', id);
             end
         end
+        
+        function result = GenObjectID(obj, ObjectName)
+                % Generate a random integer between 1 and 10000
+                randomInt = randi(10000);
+                % Concatenate the input string with the random integer
+                result = strcat(ObjectName, num2str(randomInt));
+        end        
     end
 end
 

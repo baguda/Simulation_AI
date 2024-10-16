@@ -1,23 +1,19 @@
 classdef Agent < MapObject
     properties
-        name           % Agent's name
-        age            % Age of the agent
         energy         % Current energy level
-        location       % Current location of the agent on the map
-        LTM = {};      % Long Term Memory (LTM), a list of generalized memories
-        STM = {};      % Short Term Memory (STM), a list of detailed recent memories
         mood           % Current mood of the agent
         map            % Reference to the map the agent exists in
-        socialMemories = {};  % List of social memories (profile-based memories)
+        memory         
     end
     
     methods
         % Constructor
-        function obj = Agent(Name, Location, Map)
-            obj.name = Name;
-            obj.age = 0;
-            obj.location = Location;
+        function obj = Agent(Name, Location, Map, id)
+            obj@MapObject(id, Location, 'Agent', Name);
             obj.map = Map;
+            obj.memory = MemoryStructure;
+            obj.energy = 100;
+            obj.mood = 'happy';
         end
         
         % Method to increment age
