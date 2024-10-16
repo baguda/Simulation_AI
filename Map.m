@@ -64,8 +64,8 @@ classdef Map
         
         function obj = AddAgent(obj, name, location)
             if obj.edificeGrid(location(1), location(2)) < 10
-                newAgent = Agent(obj.GenObjectID(name), name, nutrition, location);  % Create a new food object
-                obj = obj.addObject(newAgent);  % Add food to the map
+                newAgent = Agent(obj.GenObjectID(name), name, location, obj);  % Create a new food object
+                obj = obj.addObject(newAgent); 
             else
                 error('Cannot place Agent on an impassable cell');
             end
@@ -142,9 +142,9 @@ classdef Map
                 [row, col] = obj.getObjectPosition(mapObj);
                 
                 if isa(mapObj, 'Agent')
-                    scatter(col, row, 100, 'r', 'filled');  % Agent as red dot
+                    scatter(col, row, 10, 'r', 'filled');  % Agent as red dot
                 elseif isa(mapObj, 'Food')
-                    scatter(col, row, 100, 'g', 'filled');  % Food as green dot
+                    scatter(col, row, 10, 'g', 'filled');  % Food as green dot
                 end
             end
             
