@@ -1,4 +1,4 @@
-classdef SensoryMemory < Memory
+classdef ProceduralMemory < Memory
     properties
         name        % Name of the encountered object (e.g., another agent)
         objectID    % ID of the encountered object
@@ -8,7 +8,7 @@ classdef SensoryMemory < Memory
     
     methods
         % Constructor to initialize a ProfileMemory instance
-        function obj = SensoryMemory(location, startTurn, strength, decayFunc, name, objectID, affinity, history)
+        function obj = ProceduralMemory(location, startTurn, strength, decayFunc, name, objectID, affinity, history)
             % Call the superclass constructor
             obj@Memory(location, startTurn, strength, decayFunc);
             % Initialize specific profile memory properties

@@ -46,6 +46,7 @@ classdef Simulation
         
         % Function to update the graphical display of the map
 
+       end
     end
 
 

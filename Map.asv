@@ -17,11 +17,10 @@ classdef Map
             obj.foodCount = FoodCount;
         end
         function obj = GenerateMap(obj)
-            noise = PerlinNoise2D(obj.mapSize(2), obj.mapSize(1), obj.mapSize(2)*0.15, 1, 0.005, 5, 0, 10, obj.seed,6.5,2.5);
+            noise = PerlinNoise2D(obj.mapSize(2), obj.mapSize(1), obj.mapSize(2)*0.15, 1, 0.005, 5, 0, 10, obj.seed,6.5,2);
             % Generate terrain and temperature using MapUtility
             obj.edificeGrid = noise.grid;
             obj=obj.PopulateFood(obj.foodCount);
-            obj=obj.AddAgent('007',[10 10]);
         end
         % Create the map (including terrain and food)
         function obj = CreateMap(obj, foodCount, clusterCount, clusterRange)
@@ -33,7 +32,7 @@ classdef Map
         end        
         % AddFood method
         function obj = AddFood(obj, name, nutrition, location)
-            if obj.edificeGrid(location(1), location(2)) < 9.5
+            if obj.edificeGrid(location(1), location(2)) < 10
                 newFood = Food(obj.GenObjectID(name), name, nutrition, location);  % Create a new food object
                 obj = obj.addObject(newFood);  % Add food to the map
             else

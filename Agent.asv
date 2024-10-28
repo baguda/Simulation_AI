@@ -4,7 +4,7 @@ classdef Agent < MapObject
         hydration
         satiety
         heat
-        intention 
+        
         map            % Reference to the map the agent exists in
         memory         
         
@@ -20,7 +20,6 @@ classdef Agent < MapObject
             obj.hydration = 100;
             obj.satiety = 50;
             obj.heat = 0;
-            
         end
         
         % Method to increment age

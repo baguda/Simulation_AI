@@ -1,4 +1,4 @@
-classdef MotorMemory < Memory
+classdef ProspectiveMemory < Memory
     properties
         hidden      % List of vectors pointing from memory location to unseen cells
         objects     % List of vectors pointing from memory location to seen objects
@@ -7,7 +7,7 @@ classdef MotorMemory < Memory
     
     methods
         % Constructor to initialize a PerceptualMemory instance
-        function obj = MotorMemory(location, startTurn, strength, decayFunc, hidden, objects, terrain)
+        function obj = ProspectiveMemory(location, startTurn, strength, decayFunc, hidden, objects, terrain)
             % Call the superclass constructor
             obj@Memory(location, startTurn, strength, decayFunc);
             % Initialize specific perceptual memory properties
